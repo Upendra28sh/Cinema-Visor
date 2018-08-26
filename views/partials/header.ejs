@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Movie Mania!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="../../public/style.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Movie Mania</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+
+          <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+
+          <!-- <li><a href="#">Link</a></li> -->
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Discover
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="discover-movies" href="/users/discover-movies">Movies</a></li>
+              <li><a class="discover-tv-shows" href="#">TV Shows</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movies
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="popular-movies" href="#">Popular</a></li>
+              <li><a class="top-rated-movies" href="#">Top Rated</a></li>
+              <li><a class="upcoming-movies" href="#">Upcoming</a></li>
+              <li><a class="now-playing-movies" href="#">Now Playing</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TV
+              Shows
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="popular-tv-shows" href="#">Popular</a></li>
+              <li><a class="top-rated-tv-shows" href="#">Top Rated</a></li>
+              <li><a class="on-tv-tv-shows" href="#">On TV</a></li>
+              <li><a class="airing-today-tv-shows" href="#">Airing Today</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a class="popular people" href="#">Popular People</a></li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users/login">Login</a></li>
+          <li><a href="/users/register">Sign Up</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">You
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">View Profile</a></li>
+              <li><a href="#">Watchlist</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Edit Profile</a></li>
+              <li><a href="#">Settings</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/users/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+
+
+
+
+  <% if(success_msg){ %>
+    <div class="alert alert-success">
+      <%= success_msg %>
+    </div>
+    <% } else if(error_msg){ %>
+      <div class="alert alert-warning">
+        <%= error_msg %>
+      </div>
+      <% } else if(error){ %>
+        <div class="alert alert-danger">
+          <%= error %>
+        </div>
+        <% } %>
+
+          <div class="container">
+            <div class="search">
+
+
+              <form action="/get" method="POST">
+                <div class='form-group'><input type="text" name="name" placeholder="Search Movie, Tv Shows" class='form-control'
+                    required></div>
+
+
+                <button class="btn  btn-dark">Let's Go!</button>
+              </form>
+
+
+
+
+            </div>
+            <hr class="style-one">

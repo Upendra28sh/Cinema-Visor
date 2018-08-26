@@ -1,0 +1,69 @@
+<% include partials/header.ejs %>
+
+    <% movies.results.forEach(function(movie){ %>
+        <div class="main">
+            <div class="parent">
+                <div class="maindiv">
+                    <div class="divpic">
+                        <img src="avengers.jpg" alt="Avengers">
+                    </div>
+                    <div class="description">
+                        Avengers<br> date
+                        <br>
+                        <p>hi
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%  })  %>
+
+            <style>
+                body {
+                    background-color: maroon;
+                }
+
+                .parent {
+                    padding: 120px;
+                    padding-left: 25px;
+                    margin: 16px;
+                    margin-top: 0px;
+                    margin-left: 22px;
+                    width: 47%;
+                    display: inline-block;
+                }
+
+                .main {
+                    margin-top: -70px;
+                }
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .maindiv {
+                    position: absolute;
+                    border: 1px solid black;
+                    width: 40%;
+                    height: 250px;
+                }
+
+                .divpic {
+                    display: inline-block;
+                    width: 35%;
+                    height: 100%;
+                    background-color: blue;
+                }
+
+                .description {
+                    background-color: white;
+                    display: inline-block;
+                    position: absolute;
+                    width: 65%;
+                    height: 100%;
+                    text-align: center;
+                }
+            </style>
+
+            <% include partials/footer.ejs %>
