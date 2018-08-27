@@ -1,69 +1,40 @@
 <% include partials/header.ejs %>
 
-    <% movies.results.forEach(function(movie){ %>
-        <div class="main">
-            <div class="parent">
-                <div class="maindiv">
-                    <div class="divpic">
-                        <img src="avengers.jpg" alt="Avengers">
-                    </div>
-                    <div class="description">
-                        Avengers<br> date
-                        <br>
-                        <p>hi
-                        </p>
+    <div class="container contents">
+        <div class="row">
+            <% movies.results.forEach(function(movie){ %>
+                <div class="col-sm-12 col-md-6 col-lg-6 p-3">
+                    <div class="card flex-row flex-wrap">
+                        <div class="card-header border-0 img-container">
+                            <img src="./partials/avengers.jpg" alt="Image">
+                        </div>
+                        <div class="card-block px-2">
+                            <h4 class="card-title">Avengers: Infinity War</h4>
+                            <p class="card-text">As the Avengers and their allies have continued to protect the world from
+                                threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows:
+                            </p>
+                            <a href="#" class="btn btn-primary">More Info</a>
+                        </div>
+                        <div class="w-100"></div>
                     </div>
                 </div>
-            </div>
+                <%  })  %>
         </div>
-        <%  })  %>
+    </div>
 
-            <style>
-                body {
-                    background-color: maroon;
-                }
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous"> -->
 
-                .parent {
-                    padding: 120px;
-                    padding-left: 25px;
-                    margin: 16px;
-                    margin-top: 0px;
-                    margin-left: 22px;
-                    width: 47%;
-                    display: inline-block;
-                }
+    <style>
+        img {
+            width: 200px;
+            height: 270px;
+            background-color: aqua;
+        }
 
-                .main {
-                    margin-top: -70px;
-                }
+        p {
+            width: 280px;
+        }
+    </style>
 
-                img {
-                    height: 100%;
-                    width: 100%;
-                }
-
-                .maindiv {
-                    position: absolute;
-                    border: 1px solid black;
-                    width: 40%;
-                    height: 250px;
-                }
-
-                .divpic {
-                    display: inline-block;
-                    width: 35%;
-                    height: 100%;
-                    background-color: blue;
-                }
-
-                .description {
-                    background-color: white;
-                    display: inline-block;
-                    position: absolute;
-                    width: 65%;
-                    height: 100%;
-                    text-align: center;
-                }
-            </style>
-
-            <% include partials/footer.ejs %>
+    <% include partials/footer.ejs %>
