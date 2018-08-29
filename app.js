@@ -104,14 +104,22 @@ app.post('/getmov', function (req, res) {
             return console.dir(error);
         }
         var selected = JSON.parse(body);
-        //console.dir(body);
+        
         Request.get("https://api.themoviedb.org/3/movie/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&append_to_response=videos", (error, response, body) => {
             if (error) {
                 return console.dir(error);
             }
+
             var trailer = JSON.parse(body);
-            //console.dir(body);
-            res.render('show.ejs', { item: selected, trailer: trailer })
+            var itsId=selected.id;
+            Request.get("https://api.themoviedb.org/3/movie/" + itsId + "/reviews?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+                if (error) {
+                    return console.dir(error);
+                }
+
+                reviews = JSON.parse(body);
+                res.render('show.ejs', { item: selected, trailer: trailer , reviews: reviews})
+            })
         })
     })
 })
