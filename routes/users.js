@@ -1,74 +1,61 @@
-var express = require('express')
-var router = express.Router();
-var user = require('../models/user')
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
-const Request = require("request");
+var express=require('express')
+var router=express.Router();
+var user=require('../models/user')
+var passport=require('passport')
+var LocalStrategy=require('passport-local').Strategy
 
 
-router.get('/register', function (req, res) {
-	res.render('register.ejs');
+router.get('/register',function(req,res){
+    res.render('register.ejs');
 })
 
-router.get('/login', function (req, res) {
-	res.render('login.ejs');
+router.get('/login',function(req,res){
+    res.render('login.ejs');
 })
 
-router.get('/discover-movies', function (req, res) {
-	Request.get("https://api.themoviedb.org/3/discover/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
-		if (error) {
-			return console.dir(error);
-		}
-		console.log("hi")
-		var discovermovies = JSON.parse(body);
-		res.render('movie.ejs', { movies: discovermovies })
-		//res.render('movies.ejs');
-	});
+router.post('/register',function(req,res){
+
+    var name=req.body.name;
+    var email=req.body.email;
+    var username=req.body.username;
+    var password=req.body.password;
+    var cpassword=req.body.cpassword;
+  
+   // console.log(name+" "+email+" "+username+" "+password+" "+cpassword);
+    //
+req.checkBody('name','Name is required').notEmpty();
+req.checkBody('email','Email is not valid').isEmail();
+req.checkBody('username','Username is Required').notEmpty();
+req.checkBody('password','password is Required').notEmpty();
+req.checkBody('cpassword','Password do not match').equals(req.body.password);
+
+
+
+var errors=req.validationErrors();
+if(errors){
+
+    res.render('register.ejs',{error:errors})
+
+}
+else{
+   
+var newUser=new user({
+    name:name,
+    username:username,
+    password:password,
+    email:email
 })
+console.log(newUser)
 
-router.post('/register', function (req, res) {
+user.createUser(newUser,function(err,user){
+if(err)throw err;
+console.log(user);
 
-	var name = req.body.name;
-	var email = req.body.email;
-	var username = req.body.username;
-	var password = req.body.password;
-	var cpassword = req.body.cpassword;
+req.flash('success_msg','You are registered and now can Log-In!')
+    res.redirect('/users/login')
 
-	// console.log(name+" "+email+" "+username+" "+password+" "+cpassword);
-	//
-	req.checkBody('name', 'Name is required').notEmpty();
-	req.checkBody('email', 'Email is not valid').isEmail();
-	req.checkBody('username', 'Username is Required').notEmpty();
-	req.checkBody('password', 'password is Required').notEmpty();
-	req.checkBody('cpassword', 'Password do not match').equals(req.body.password);
-
-
-
-	var errors = req.validationErrors();
-	if (errors) {
-
-		res.render('register.ejs', { error: errors })
-
-	}
-	else {
-
-		var newUser = new user({
-			name: name,
-			username: username,
-			password: password,
-			email: email
-		})
-		console.log(newUser)
-
-		user.createUser(newUser, function (err, user) {
-			if (err) throw err;
-			console.log(user);
-
-			req.flash('success_msg', 'You are registered and now can Log-In!')
-			res.redirect('/users/login')
-
-		})
-	}
+})
+}
 
 })
 
@@ -93,7 +80,7 @@ passport.use(new LocalStrategy(
 		});
 	}));
 
-passport.serializeUser(function (user, done) {
+  passport.serializeUser(function (user, done) {
 	done(null, user.id);
 });
 
@@ -105,15 +92,15 @@ passport.deserializeUser(function (id, done) {
 
 
 
-router.post('/login', passport.authenticate('local', { successRedirect: '/getmov', failureRedirect: '/users/login', failureFlash: true }),
+router.post('/login',passport.authenticate('local', { successRedirect: '/getmov', failureRedirect: '/users/login', failureFlash: true }),
 	function (req, res) {
 		res.redirect('/');
 	});
 
-router.get('/logout', function (req, res) {
-	req.logout();
-	req.flash('success_msg', 'You are Successfully logged out')
-	res.redirect('/users/login')
+router.get('/logout',function(req,res){
+    req.logout();
+    req.flash('success_msg','You are Successfully logged out')
+    res.redirect('/users/login')
 })
 
 
