@@ -248,7 +248,7 @@ app.get('/tvshows/:id',function(req,res){
         if(error) {
             return console.dir(error);
         }
-    
+        
         var tvshows=JSON.parse(body);
       // console.log(tvshows.results[0].title);
        res.render('indextv.ejs',{shows:tvshows})
@@ -559,6 +559,10 @@ app.get('/:id',function(req,res){
 }
 )
 
+app.get('/cinema-visor',function(req,res){
+    res.render('landing.ejs');
+});
+
 ///auth now on
 
-app.listen(3090);
+app.listen(2647);

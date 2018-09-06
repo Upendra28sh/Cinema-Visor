@@ -25,7 +25,7 @@
       <hr class="style-one">
     </div>
 <div class="down"> 
-<div style="width:300px; margin:auto; margin-top:30px;padding-top:30px">
+<div style="width:300px; margin:auto; margin-top:30px;margin-left: 570px;padding-top:30px">
     <img class="button" src="/assets/fb.png" style="height: 40px; width:40px">
   <img class="button" src="/assets/insta.png" style="height: 40px; width:40px">
   <img class="button" src="/assets/twi.png" style="height: 40px; width:40px">
@@ -34,8 +34,8 @@
 </div>
 
 <!-- ovi class end -->
-
 </div>
+
 <div id="particles-js"></div>   
 
     <script>
@@ -1740,10 +1740,18 @@ particlesJS('particles-js',
     position: absolute;
     top: 0;
     left: 0;
-    right:0;
+    /* THIS CAUSES UNRESPONSIVENESS  */
+    right: 0;
     z-index: 100;
-    color: white;
+    /* color: white; */
 }
+
+.pagination
+{
+   margin-left: 60px;
+}
+
 </style>
+
 </body>
 </html>
