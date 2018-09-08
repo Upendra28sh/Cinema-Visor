@@ -1,91 +1,85 @@
-.p {
-    /* background: #FF512F;  fallback for old browsers */
-    /* background: -webkit-linear-gradient(to right, #DD2476, #FF512F);  Chrome 10-25, Safari 5.1-6 */
-    /* background: linear-gradient(to right, #DD2476, #FF512F); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
-img.thumbnail {
-    width: 100%;
-}
+img.thumbnail{
 
-.down {
-    background-color: black;
-    width: 100%;
-    height: 200px;
+  width: 100%;
+ 
 }
-
-.sel1 {
-    width: 100%;
+.down{
+background-color: black;
+width: 100%;
+height: 200px;
 }
+.sel1{
+width: 100%;
+    
+}
+.button{
 
-.button {
-    background-color: black;
+    background-color:black;
     color: white;
     margin-left: 20px;
     margin-bottom: 50px;
+    
 }
-
-.button:hover {
+.button:hover{
     background-color: gray;
+ 
 }
 
-#bt {
-    width: 360px;
-    margin: 20px auto;
-}
+#bt{
 
-.infobtn {
-    width: 50%;
-    margin: 10px auto;
-}
+width:360px;
+margin: 20px auto;
 
-#moviebox {
-    margin-top: 40px;
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-    background: rgb(56, 51, 51);
-    background: radial-gradient(circle, rgba(56, 51, 51, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 1) 100%);
 }
+.infobtn{
+width:50%;
+margin:10px auto;
 
-#mydiv {
-    opacity: 0.4;
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    margin-top: 7%;
 }
+.moviebox{
 
-.trailer-box {
-    width: 800px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
+margin-top:40px;
+width: 100%;
+margin-left: 0px;
+margin-right: 0px;
+color: white
 }
+#mydiv{
+opacity: 0.4;
+height:100%;
+width:100%;
+margin: auto;
+margin-top:7%;
 
-.pp {
-    background: #e52d27;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #b31217, #e52d27);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #b31217, #e52d27);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    margin: 0;
-    padding: 0;
 }
+.trailer-box{
 
-.textinbox {
-    position: absolute;
-    /* To place the text on the image*/
-    top: 200px;
-    /* The exact location of the text from the top of the image*/
-    left: 100px;
-    ;
-    /* Other beautification stuff */
-    width: 100%;
-    color: white;
+width:800px;
+margin-top:100px;
+margin-left:auto;
+margin-right: auto;
+
+
+
 }
+.pp{
+    background: #e52d27;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #b31217, #e52d27);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #b31217, #e52d27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+    
+margin:0;
+padding:0;
+}
+.textinbox{
+ 
+position: absolute; /* To place the text on the image*/
+top: 200px; /* The exact location of the text from the top of the image*/
+left: 100px;; /* Other beautification stuff */
+width: 100%;
+color:white; 
+}
 hr.style-one {
     border: 0;
     height: 1px;
@@ -94,16 +88,48 @@ hr.style-one {
     background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
     background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
     background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
-}
+    }
+   #myinp{
+       width: 100%
+   }
+  .rev{
 
-#myinp {
+    font-family: 'Roboto', sans-serif;
+
+  }
+  .review-box{
+
+ margin-top:20px;
+
+  }
+ .castimg{
+
+
+    
+    width:283px;
+ }
+ .divtext {
+    margin-left: 550px;
+}
+.overview {
     width: 100%
 }
-
-.rev {
-    font-family: 'Roboto', sans-serif;
+.review
+{
+    margin-left: 8%
 }
+.p{
 
-.review-box {
     margin-top: 20px;
+}
+.cast-name{
+
+margin-left:10%;
+color: white
+
+}
+.mt-name{
+    
+    color: white;
+    padding-left: 30px;
 }

@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js" ></script>
+  
   </head>
 <body>
   <div class="ovi">
@@ -30,15 +31,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/cinema-visor">Cinema Visor </a>
+        <a class="navbar-brand" href="/">Cinema Visor</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-          <!-- <li class="active"><a href="/movies/popular/1">Home<span class="sr-only">(current)</span></a></li> -->
-          <li class="active"><a href="/trending-all/1">Home<span class="sr-only">(current)</span></a></li>
+          <li><a href="/trending-all/1">Home<span class="sr-only">(current)</span></a></li>
 
           <!-- <li><a href="#">Link</a></li> -->
 
@@ -46,15 +46,15 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Discover
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="discover-movies" href="#">Movies</a></li>
-              <li><a class="discover-tv-shows" href="/toprated-tvshows">TV Shows</a></li>
+              <li><a class="discover-movies" href="/discover-movies">Movies</a></li>
+              <li><a class="discover-tv-shows" href="/discover-tvshows">TV Shows</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trending
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <!-- <li><a class="trending-all" href="/trending-all/1">All</a></li> -->
+        
               <li><a class="trending-movies" href="/trending-movies/1">Movies</a></li>
               <li><a class="trending-tv-shows" href="/trending-tvshows/1">TV Shows</a></li>
               <li><a class="trending-people" href="/trending-people/1">People</a></li>
@@ -99,7 +99,7 @@
               <li><a href="/users/login">Login</a></li>
           <li><a href="/users/register">Sign Up</a></li>
          <% } %>
-          
+         <li><a href="/discuss">Discuss</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">You
               <span class="caret"></span></a>
@@ -132,11 +132,11 @@
 
 
       <form class="form-inline" action="/get" method="POST" >
-        <div class="search col-md-8 col-sm-8">
+        <div class="search col-md-8 col-sm-8 col-xs-8">
           <label class="sr-only" for="inlineFormInputName2">Name</label>
           <input id="myinp" type="text" name="name"class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search Movies And Tv Shows" required>
         </div>
-        <div class="search col-md-2 col-sm-2">
+        <div class="search col-md-2 col-sm-2 col-xs-2">
           <label class="sr-only" for="inlineFormInputGroupUsername2">Preferance</label>
           <div class="input-group mb-2 mr-sm-2">
               <select class="form-control" id="sel1" name="selval" >
@@ -150,7 +150,7 @@
           
           
         </div>
-        <div class="search col-md-2 col-sm-2"><button type="submit" class="btn  btn-dark">Let's Go!</button></div>
+        <div class="search col-md-2 col-sm-2 col-xs-2"><button type="submit" class="btn  btn-dark">Let's Go!</button></div>
         </form>
 
 
