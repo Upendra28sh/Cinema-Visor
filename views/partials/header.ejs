@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Movie Mania!</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/television.png" />
+    <title>Cinema Visor</title>
     <link rel="stylesheet" href="/style.css" type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script
@@ -15,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js" ></script>
-  
+    
   </head>
 <body>
   <div class="ovi">
@@ -38,7 +39,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-          <li><a href="/trending-all/1">Home<span class="sr-only">(current)</span></a></li>
+          <li><a href="/trending-movies/1">Home<span class="sr-only">(current)</span></a></li>
 
           <!-- <li><a href="#">Link</a></li> -->
 
@@ -100,19 +101,19 @@
           <li><a href="/users/register">Sign Up</a></li>
          <% } %>
          <li><a href="/discuss">Discuss</a></li>
+         <% if(user){ %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">You
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/dashboard">View Profile</a></li>
             
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Edit Profile</a></li>
-              <li><a href="#">Settings</a></li>
+              
               <li role="separator" class="divider"></li>
               <li><a href="/users/logout">Logout</a></li>
             </ul>
           </li>
+        <% } %>
         </ul>
 
 
@@ -125,33 +126,30 @@
 
 
 
-
-               
-
-                 <div class="container">
-
-
-      <form class="form-inline" action="/get" method="POST" >
-        <div class="search col-md-8 col-sm-8 col-xs-8">
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input id="myinp" type="text" name="name"class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search Movies And Tv Shows" required>
-        </div>
-        <div class="search col-md-2 col-sm-2 col-xs-2">
-          <label class="sr-only" for="inlineFormInputGroupUsername2">Preferance</label>
-          <div class="input-group mb-2 mr-sm-2">
-              <select class="form-control" id="sel1" name="selval" >
-                  <option>Movies</option>
-                  <option>Tv-Shows</option>
-                </select>
-           
-          </div>
-        
-        
-          
-          
-        </div>
-        <div class="search col-md-2 col-sm-2 col-xs-2"><button type="submit" class="btn  btn-dark">Let's Go!</button></div>
-        </form>
-
+<div class="container">
+  <form class="form-inline" action="/get" method="POST" >
+    <div class="search col-md-8 col-sm-8 col-xs-8">
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+      <input style="background:  black ; color:white" id="myinp" type="text" name="name"class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search Movies And Tv Shows" required>
+    </div>
+    <div class="search col-md-2 col-sm-2 col-xs-2">
+      <label class="sr-only" for="inlineFormInputGroupUsername2">Preferance</label>
+      <div class="input-group mb-2 mr-sm-2">
+          <select class="form-control" id="sel1" name="selval" style="background: black; color: white" >
+              <option>Movies</option>
+              <option>Tv-Shows</option>
+            </select>
+       
+      </div>
+    
+    
+      
+      
+    </div>
+    <div class="search col-md-2 col-sm-2 col-xs-2"><button type="submit" class="btn submitsearch">Let's Go!</button></div>
+    </form>
+<style>
+  
+</style>
 
 <hr class="style-one">

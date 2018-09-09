@@ -4,30 +4,49 @@
             <div class="col-lg-4 col-md-6 col-lg-6">
                 <img src="https://image.tmdb.org/t/p/w500<%= item.profile_path %>" alt="" style="width: 100%">
             </div>
-            <div class="col-md-4 col-lg-6">
+            <div class="col-md-4 col-lg-6" style="padding-left: 5%">
                 <h1>
                     <%= item.name %>
                 </h1>
-                <h2>Birthday :
-                    <%= item.birthday %>
-                </h2>
-                <h2>Place Of Birth :<br>
-                    <%= item.place_of_birth %>
-                </h2>
-                <% if(item.homepage==null){ %>
+                <% if(item.birthday==null){ %>
                     <% } else{ %>
-                        <h2>
-                            <a href="<%= item.homepage %>">Visit
-                                <%= item.name %>'s Website</a>
+
+                        <h2>Birthday :
+                            <%= item.birthday %>
                         </h2>
                         <% } %>
-                        <% console.log("is is "+item.id) %>
+
+                            <% if(item.place_of_birth==null){ %>
+                                <% } else{ %>
+
+                                    <h2>Place Of Birth :
+                                        <br>
+                                        <%= item.place_of_birth %>
+                                    </h2>
+                                    <% } %>
+
+
+
+                                        <% if(item.homepage==null){ %>
+                                            <% } else{ %>
+                                                <h3>
+                                                    <a style="color: white" href="<%= item.homepage %>">Visit
+                                                        <%= item.name %>'s Website</a>
+                                                </h3>
+                                                <% } %>
+
             </div>
         </div>
+
+        <% if(item.biography==null){ %>
+            <% } else{ %>
+
         <h2>Biography :-</h2>
         <p class="overview" style="font-size:1.5em">
             <%= item.biography %>
         </p>
+        <% } %>
+
     </div>
     </div>
     <div class="container">
@@ -39,14 +58,15 @@
                         <% } else{ %>
                             <div class="col-sm-6 col-md-3 col-lg-3">
                                 <form action="/getmov" method="POST">
-                                <input type="image" name="movnm" value="<%= credit.id %>"  src="https://image.tmdb.org/t/p/w500<%= credit.poster_path %>" style="width: 100%">
-                                <h3 class="cast-name" style="text-align: center; ">
-                                    <%= credit.title %>
-                                </h3>
-                            </form>
+                                    <input type="image" name="movnm" value="<%= credit.id %>" src="https://image.tmdb.org/t/p/w500<%= credit.poster_path %>"
+                                        style="width: 100%">
+                                    <h3 class="cast-name" style="text-align: center; ">
+                                        <%= credit.title %>
+                                    </h3>
+                                </form>
                             </div>
                             <% } %>
                                 <%  })  %>
             </div>
         </div>
-        <% include partials/footer.ejs %>
+        <% include partials/footer1.ejs %>

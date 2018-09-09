@@ -59,13 +59,151 @@ app.use(expressValidator({
   app.use('/',routes);
 app.use('/users',users);
 
+app.post('/discoversearch',function(req,res){
 
+    var type=req.body.selval;
+ 
+    var query=req.body.name;
+  
+
+  
+   
+var genre=req.body.genre;
+
+
+var pref=req.body.secpref;
+var arrayofgenre= [ {
+      id: 28,
+      name: "Action"
+    },
+    {
+      id: 12,
+      name: "Adventure"
+    },
+    {
+      id: 16,
+      name: "Animation"
+    },
+    {
+      id: 35,
+      name: "Comedy"
+    },
+
+    {
+      id: 18,
+      name: "Drama"
+    },
+    {
+      id: 10751,
+      name: "Family"
+    },
+    {
+      id: 14,
+      name: "Fantasy"
+    },
+  
+    {
+      id: 27,
+      name: "Horror"
+    },
+    
+  
+    {
+      id: 10749,
+      name: "Romance"
+    },
+    {
+      id: 878,
+      name: "Sci-Fi"
+    },
+
+  ]
+  var myid;
+arrayofgenre.forEach(function(cg){
+
+if(cg.name==genre)
+{
+    myid=cg.id;
+}
+
+
+})
+
+
+
+
+
+
+
+
+
+    if(type=="Movies")
+    {
+        Request.get("https://api.themoviedb.org/3/discover/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&include_adult=false&include_video=false&page=1&with_genres="+myid, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+      var found=JSON.parse(body);
+     //  console.log(tvshows.results[0].title);
+     var myhead="Results"
+       res.render('index.ejs',{movies:found,myhead:myhead})
+    })
+    }
+    else{
+        var x=false;
+var availarr=['popularity.desc','popularity.asc','vote_averge.desc','vote_averge.asc'];
+availarr.forEach(function(gen){
+if(pref==gen)
+{x=true;
+
+}
+
+
+})
+if(x==false){
+
+    pref='popularity.desc';
+}
+
+
+
+
+
+
+
+
+
+
+  
+      
+        Request.get("https://api.themoviedb.org/3/discover/tv?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US&sort_by="+pref+"&page=1&timezone=America%2FNew_York&with_genres="+myid+"&include_null_first_air_dates=false", (error, response, body) => {
+            if(error) {
+                return console.dir(error);
+            }
+          var found=JSON.parse(body);
+         //  console.log(tvshows.results[0].title);
+         var myhead="Results";
+           res.render('indextv.ejs',{shows:found,myhead:myhead})
+        })
+    
+    
+    }
+
+
+
+
+
+
+
+
+    
+})
 app.post('/get',function(req,res){
 
 var type=req.body.selval;
-console.log(type);
+
 var query=req.body.name;
-console.log(query);
+
  var arr=query.split(" ");
 var result="";
 for(var i=0;i<arr.length;i++)
@@ -81,7 +219,7 @@ else{
 }
 
 if(type=="Movies")
-{console.log("in movies");
+{
     Request.get("https://api.themoviedb.org/3/search/movie?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
     if(error) {
         return console.dir(error);
@@ -93,7 +231,7 @@ if(type=="Movies")
 })
 }
 else{
-  console.log("in tv")
+  
     Request.get("https://api.themoviedb.org/3/search/tv?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&query="+result, (error, response, body) => {
         if(error) {
             return console.dir(error);
@@ -134,7 +272,21 @@ res.render('show.ejs',{item:selected,trailer:trailer})
 
 
 
+app.post('/discussionbytitle',function(req,res){
 
+var title=req.body.name;
+
+Discussion.find({title:title},function(err,found){
+
+ res.render('discussion.ejs',{all:found})
+
+
+})
+
+
+
+
+})
 
 
 
@@ -177,8 +329,7 @@ Discussion.create(obj,function(err,dis){
     else{
 
         Discussion.find({},function(err,all){
- console.log('alll the disci=usiion are ------');
-console.log(all);
+
 
             res.render('discussion.ejs',{all:all});
         })
@@ -188,16 +339,39 @@ console.log(all);
 })
 
 
+app.get('/discover-movies',function(req,res){
+    var myhead="Popular Movies"
+    Request.get("https://api.themoviedb.org/3/movie/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var popmov=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('discover.ejs',{movies:popmov,myhead:myhead})
 
-
-app.get('/discover-movies',function(re1,res){
-
-res.render('discover.ejs');
 
 })
-app.get('/discover-tvshows',function(re1,res){
 
-    res.render('discover.ejs');
+
+})
+
+
+
+app.get('/discover-tvshows',function(req,res){
+
+    var myhead="Popular Movies"
+    Request.get("https://api.themoviedb.org/3/movie/popular?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+    
+        var popmov=JSON.parse(body);
+      // console.log(tvshows.results[0].title);
+       res.render('discover.ejs',{movies:popmov,myhead:myhead})
+
+
+})
     
     })
 
@@ -268,7 +442,7 @@ app.post('/get-tv', function (req, res) {
                     }
                    
                     casts = JSON.parse(body);
-                    
+                  
                     res.render('showtv.ejs', { item: selected, trailer: trailer, reviews: reviews, casts: casts })
                 })
             })
@@ -285,10 +459,37 @@ app.post('/get-tv', function (req, res) {
 
 
 
+app.get('/trending-all/:id',function(req,res){
+   
+    Request.get("https://api.themoviedb.org/3/trending/movie/day?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+        var tremov=JSON.parse(body);
+        var type='movie';
+        res.render('trending.ejs',{movies:tremov, type:type})
+    })
+});
 
 
-
-
+app.post('/getpeople', function (req, res) {
+    var e = req.body.personName;
+        Request.get("https://api.themoviedb.org/3/person/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+        if (error) {
+            return console.dir(error);
+        }
+        var selected = JSON.parse(body);
+        
+        Request.get("https://api.themoviedb.org/3/person/" + e + "/movie_credits?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
+                if (error) {
+                    return console.dir(error);
+                }
+                credits = JSON.parse(body);
+                
+                res.render('showPeople.ejs', { item: selected, credits:credits })
+            })
+    })
+})
 
 
 
@@ -395,27 +596,6 @@ app.get('/popular-people/:id',function(req,res){
 
 })
 
-app.post('/getpeople', function (req, res) {
-    var e = req.body.personName;
-        Request.get("https://api.themoviedb.org/3/person/" + e + "?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
-        if (error) {
-            return console.dir(error);
-        }
-        var selected = JSON.parse(body);
-        
-        Request.get("https://api.themoviedb.org/3/person/" + e + "/movie_credits?api_key=2b6f6b0f9f52bbfa3376c020de4832e3", (error, response, body) => {
-                if (error) {
-                    return console.dir(error);
-                }
-                credits = JSON.parse(body);
-                
-                res.render('showPeople.ejs', { item: selected, credits:credits })
-            })
-    })
-})
-
-
-
 app.get('/tvshows/airing-today/:id',function(req,res){
     var myhead="Airing-Now TV Shows";
     Request.get("https://api.themoviedb.org/3/tv/airing_today?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US"+"&page="+req.params.id, (error, response, body) => {
@@ -476,17 +656,7 @@ var myhead="Top-Rated Movies"
 
 
 
-app.get('/trending-all/:id',function(req,res){
-   
-    Request.get("https://api.themoviedb.org/3/trending/movie/day?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
-        if(error) {
-            return console.dir(error);
-        }
-        var tremov=JSON.parse(body);
-        var type='movie';
-        res.render('trending.ejs',{movies:tremov, type:type})
-    })
-});
+
 
 app.get('/trending-movies/:id',function(req,res){
    
@@ -494,7 +664,7 @@ app.get('/trending-movies/:id',function(req,res){
         if(error) {
             return console.dir(error);
         }
-        console.log("movie");
+       
         var tremov=JSON.parse(body);
         var type='movie';
         res.render('trending.ejs',{movies:tremov, type:type})
@@ -520,13 +690,12 @@ app.get('/trending-people/:id',function(req,res){
         if(error) {
             return console.dir(error);
         }
-        console.log("people");
+        
         var tremov=JSON.parse(body);
         var type='people';
         res.render('trendingpeople.ejs',{people:tremov, type:type})
     })
 });
-
 
 app.get('/movies/upcoming/:id',function(req,res){
    var myhead="Upcoming Movies";
@@ -585,7 +754,8 @@ return res.render('login.ejs');
     }
 else{ 
   
-    var arr=[];
+    var arrmov=[];
+    var arrtv=[];
     user.watchlistmovie.forEach(function(watch){
      Request.get("https://api.themoviedb.org/3/movie/"+watch+"?api_key=2b6f6b0f9f52bbfa3376c020de4832e3&language=en-US", (error, response, body) => {
          if(error) {
@@ -594,7 +764,7 @@ else{
      
          var mov=JSON.parse(body);
        
-         arr.push(mov);
+         arrmov.push(mov);
          
     
     })
@@ -608,7 +778,7 @@ else{
         
             var mov=JSON.parse(body);
           
-            arr.push(mov);
+            arrtv.push(mov);
             
        
        })
@@ -623,8 +793,8 @@ else{
 
 
 setTimeout(function(){
-    console.log(arr);
-res.render('dashboard.ejs',{email:user.email,Username:user.username,watchlist:arr,name:user.name})
+    
+res.render('dashboard.ejs',{email:user.email,Username:user.username,watchlist:arrmov,shows:arrtv,name:user.name})
 },2000);
 
 
@@ -663,6 +833,16 @@ app.post('/addtvtolist',function(req,res){
 res.redirect('/dashboard');
     
     })
+    
+    
+    
+  
+    
+    
+    
+   
+   
+
 /*
 app.get('/:id',function(req,res){
     Request.get("https://api.themoviedb.org/4/list/1?api_key=2b6f6b0f9f52bbfa3376c020de4832e3"+"&page="+req.params.id, (error, response, body) => {
@@ -680,4 +860,4 @@ app.get('/:id',function(req,res){
 
 ///auth now on
 
-app.listen(2020);
+app.listen(2345);

@@ -9,7 +9,7 @@
                         <div class="swiper-slide">
                             <div>
                                 <% if(movie.poster_path==null){ %>
-                                    <% console.log("null") %>
+                                   
                                     
                                     <form action="/getmov" method="POST">
 
@@ -18,20 +18,37 @@
                                    
                                     </form>
                                     <% } else{ %>
+                                     
+                                        <% if(type=='movie'){ %>
+                                                 <form action="/getmov" method="POST" >
 
-                                        <form action="/getmov" method="POST" >
+                                    
+                                        
                                      
                                         
                                             <input type="image" name="movnm" value="<%= movie.id %>" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" style="height: 100%; width: 100%">
                                         
                                         </form>
+                                    <% }else{ %>
+    <form action="/get-tv" method="POST" >
+
+                                    
+                                        
+                                     
+                                        
+        <input type="image" name="movnm" value="<%= movie.id %>" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="" style="height: 100%; width: 100%">
+    
+    </form>
+ <% } %>
+
+                                   
                                         
                                         <% } %>
                             </div>
                             <div class="details">
                                 <h3>
                                     <% if(type=='all'){ %>
-                                        <% console.log("all clicked") %>
+                                       
                                         <% if(movie.title==null){ %>
                                             <%= movie.name %>
                                                 <% } else{ %>
@@ -45,7 +62,7 @@
                                                                                 <%= movie.name %>
                                                                                     <% } %>
                                                                                         <% if(type=='people'){ %>
-                                                                                            <% console.log("pep found") %>
+                                                                                            
                                                                                             <%= movie.name %>
                                                                                                 <% } %>
                                                                                                     <br>
